@@ -10,7 +10,7 @@ def main():
     for ip in device_ips:
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        client.connect(hostname=ip, username=user, key_filename="C:\\Users\\Administrator\\Documents\\cisco\\admin_open.private")
+        client.connect(hostname=ip, username=user, key_filename="C:\\Users\\Administrator\\Documents\\cisco\\admin_open.private", disabled_algorithms={"pubkeys": ["rsa-sha2-256", "rsa-sha2-512"]})
 
         stdin, stdout, stderr = client.exec_command('show ip int br')
         print(stdout.read().decode())
