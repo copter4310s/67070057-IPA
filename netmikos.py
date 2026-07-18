@@ -7,18 +7,12 @@ def main():
                      "ip": device_ip,
                      "username": username,
                      "key_file": "C:\\Users\\Administrator\\Documents\\cisco\\admin_open.private",
-                     "disabled_algorithms": {"pubkeys": ["rsa-sha2-256", "rsa-sha2-512"]}
+                     "disabled_algorithms": {"pubkeys": ["rsa-sha2-256", "rsa-sha2-512"]},
                      }
 
     with ConnectHandler(**device_params) as ssh:
-        ssh.send_command("en")
-        ssh.send_command("conf t")
-        ssh.send_command("vlan 101")
-        ssh.send_command("exit")
-        ssh.send_command("int range gi0/1 - 2")
-        ssh.send_command("switchport mode access")
-        ssh.send_command("switchport access vlan 101")
-        ssh.send_command("end")
+        ssh.send_config_set("vlan 101")
+        ssh.send_config_set(["int range gi0/1 - 2", "switchport mode access", "switchport access vlan 101"])
         result = ssh.send_command("show vlan")
         print(result)
 
