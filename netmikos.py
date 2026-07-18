@@ -22,7 +22,7 @@ def main():
                              "permit 10.50.3.0 0.0.0.255",
                              "permit 172.31.57.0 0.0.0.15"])
         ssh.send_config_set(["line vty 0 4",
-                             "access-class 9 in"])
+                             "access-class 9 in vrf-also"])
 
         result = ssh.send_command("show vlan")
         print("+--- Switch 1 Result ---+")
@@ -42,7 +42,7 @@ def main():
                              "permit 10.50.3.0 0.0.0.255",
                              "permit 172.31.57.0 0.0.0.15"])
         ssh.send_config_set(["line vty 0 4",
-                             "access-class 9 in"])
+                             "access-class 9 in vrf-also"])
         
         result = ssh.send_command("show ip route vrf internet")
         print("\n+--- Router 1 Result ---+")
@@ -71,7 +71,7 @@ def main():
                              "permit 10.50.3.0 0.0.0.255",
                              "permit 172.31.57.0 0.0.0.15"])
         ssh.send_config_set(["line vty 0 4",
-                             "access-class 9 in"])
+                             "access-class 9 in vrf-also"])
         
         result = ssh.send_command("show ip route vrf internet")
         print("\n+--- Router 2 Result ---+")
