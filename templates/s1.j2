@@ -1,0 +1,9 @@
+vlan {{ vlan_id }}
+int range gi0/1 - 2
+switchport mode access
+switchport access vlan {{ vlan_id }}
+ip access-list standard 9
+permit {{ acl_permit1 }} 0.0.0.255
+permit {{ acl_permit2 }} 0.0.0.15
+line vty 0 4
+access-class 9 in vrf-also

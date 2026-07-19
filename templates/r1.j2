@@ -1,0 +1,13 @@
+int loopback 0
+vrf forwarding internet
+ip add {{ loopback_ip }} 255.255.255.255
+no shut
+router ospf 1 vrf internet
+network {{ net1 }} 0.0.0.255 area 0
+network {{ net_link }} 0.0.0.3 area 0
+network {{ loopback_ip }} 0.0.0.0 area 0
+ip access-list standard 9
+permit {{ acl_permit1 }} 0.0.0.255
+permit {{ acl_permit2 }} 0.0.0.15
+line vty 0 4
+access-class 9 in vrf-also

@@ -1,0 +1,22 @@
+int loopback 0
+vrf forwarding internet
+ip add {{ loopback_ip }} 255.255.255.255
+no shut
+router ospf 1 vrf internet
+network {{ net1 }} 0.0.0.255 area 0
+network {{ net_link }} 0.0.0.3 area 0
+network {{ loopback_ip }} 0.0.0.0 area 0
+default-information originate always
+int g0/3
+ip ospf shutdown
+int range g0/1 - 2
+ip nat inside
+int g0/3
+ip nat outside
+access-list 8 permit any
+ip nat inside source list 8 interface GigabitEthernet0/3 vrf internet overload
+ip access-list standard 9
+permit {{ acl_permit1 }} 0.0.0.255
+permit {{ acl_permit2 }} 0.0.0.15
+line vty 0 4
+access-class 9 in vrf-also
