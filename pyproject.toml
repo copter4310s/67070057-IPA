@@ -1,0 +1,7 @@
+[project]
+name = "IPA LAB"
+version = "0.1.0"
+description = "I'd like you to try using UV virtual env"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
