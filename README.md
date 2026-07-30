@@ -162,3 +162,19 @@ wr mem
 
 ผล: R2 และ R1 ping 1.1.1.1 / 8.8.8.8 ผ่าน 100%
 
+# ไม่รู้จะให้อะไรจากซี (Maybe ใช้ได้แต่ได้ใช้)
+
+## Authentication Network คณะ
+```bash
+curl -X POST "https://login.it.kmitl.ac.th/auth" -k -H "Content-Type: application/json" -d '{"username":"","password":""}'
+```
+
+## SSH Router
+```bash
+ssh -o KexAlgorithms=+diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa admin@<IP Router>
+```
+
+## SSH Switch
+```bash
+ssh -o KexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group1-sha1 -o HostKeyAlgorithms=+ssh-rsa,ssh-dss -o Ciphers=+aes128-cbc,3des-cbc -o MACs=+hmac-sha1,hmac-sha1-96 admin@<IP Switch>
+```
